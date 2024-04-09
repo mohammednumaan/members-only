@@ -1,0 +1,5 @@
+const passport = require('passport');
+
+module.exports.login_get = (req, res, next) => res.render('login')
+
+module.exports.login_post = passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/register'})

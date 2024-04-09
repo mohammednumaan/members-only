@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    div.form
+        form(method='POST' action='/login')
+            
+            label(for="uname") User Name  
+            input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
+            
+            label(for="pass") Password
+            input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
+
+            button#login(type="submit") Login
+
+            

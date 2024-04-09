@@ -10,6 +10,9 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 const mongoose = require('mongoose');
+const passport = require("passport");
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
 
 mongoose.set('strictQuery', false);
 const mongoDB = process.env.MONGO_URL;
@@ -18,6 +21,18 @@ main().catch((err) => console.log(err));
 async function main(){
   await mongoose.connect(mongoDB);
 }
+
+const sessionStore = MongoStore.create({mongoUrl: process.env.MONGO_URL, collectionName: 'sessions'})
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore,
+  cookie: { maxAge: 1000 * 60 * 60 * 24}
+}))
+
+app.use(passport.session());
+require('./passport/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
