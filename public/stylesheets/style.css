@@ -1,8 +1,23 @@
+@font-face {
+  font-family: 'poppins';
+  src: url('/pop-regular.ttf');
+}
+
+:root{
+  --textColor: #DDE6ED; 
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'poppins';
+  background-color: #222831;
+  color: #DDE6ED;
 }
 
 a {
   color: #00B7FF;
+}
+
+.header{
+  text-align: center;
 }

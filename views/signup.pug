@@ -2,24 +2,32 @@ extends layout
 
 block content 
 
-    div.form
+    div.form#signup-form
         form(method='POST' action='/register')
-            label(for="fname") First Name  
-            input(name="fname" id="fname" type="text" value=undefined === fname ? '' : fname)
-        
-            label(for="lname") Last Name  
-            input(name="lname" id="lname" type="text" value=undefined === lname ? '' : lname)
-            
-            label(for="uname") User Name  
-            input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
-            
-            label(for="pass") Password
-            input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
-            
-            label(for="cpass") Confirm Password 
-            input(name="cpass" id="cpass" type="password" value=undefined === cpass ? '' : cpass)
 
-            button#signup(type="submit") Signup
+            .form-group 
+                label(for="fname") First Name  
+                input(name="fname" id="fname" type="text" value=undefined === fname ? '' : fname)
+
+            .form-group
+                label(for="lname") Last Name  
+                input(name="lname" id="lname" type="text" value=undefined === lname ? '' : lname)
+
+            .form-group            
+                label(for="uname") User Name  
+                input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
+            
+            .form-group
+                label(for="pass") Password
+                input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
+
+            .form-group 
+                label(for="cpass") Confirm Password 
+                input(name="cpass" id="cpass" type="password" value=undefined === cpass ? '' : cpass)
+            
+            .form-group
+                a(href="/login") Already Have An Account? 
+                button#submit(type="submit") Signup
 
     if errors
         ul
