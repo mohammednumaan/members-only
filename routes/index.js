@@ -13,6 +13,13 @@ router.post('/register', register_post);
 router.get('/login', (req, res, next) => res.render('login'));
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/dashboard'}));
 
+router.get('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/dashboard');
+    });
+});
+
 router.get('/dashboard', dashboard_get);
 
 

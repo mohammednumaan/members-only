@@ -5,13 +5,9 @@ block content
     div.form#signup-form
         form(method='POST' action='/register')
 
-            .form-group 
-                label(for="fname") First Name  
-                input(name="fname" id="fname" type="text" value=undefined === fname ? '' : fname)
-
             .form-group
-                label(for="lname") Last Name  
-                input(name="lname" id="lname" type="text" value=undefined === lname ? '' : lname)
+                label(for="name") Full Name  
+                input(name="name" id="name" type="text" value=undefined === name ? '' : name)
 
             .form-group            
                 label(for="uname") User Name  

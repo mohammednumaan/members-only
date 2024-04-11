@@ -2,4 +2,12 @@ extends layout
 
 block content 
 
-    h1= `Welcome ${user}!`
+   div.user-info 
+        h1 Welcome #{user.username}!
+        p Membership Satus : #{user.status}
+        a(href="/logout" role='button') Logout 
+
+   div.messages
+    p Hello 
+        
+         

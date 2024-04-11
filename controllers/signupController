@@ -8,8 +8,7 @@ module.exports.register_get = (req, res, next) => res.render('signup');
 
 module.exports.register_post = [
 
-    body('fname').trim().isLength({min: 3}).withMessage('First Name Must Be Atleast 3 Characters!').escape(),
-    body('lname').trim().isLength({min: 3}).withMessage('Last Name Must Be Atleast 3 Characters!').escape(),
+    body('name').trim().isLength({min: 3}).withMessage('Last Name Must Be Atleast 3 Characters!').escape(),
     body('uname').trim().isLength({min: 3}).withMessage('Username Must Be Atleast 3 Characters!').escape(),
     body('pass').trim().isLength({min: 8}).withMessage('Password Must Be Atleast 8 Characters!').escape(),
     body('cpass').custom((value, {req}) => {
@@ -23,8 +22,7 @@ module.exports.register_post = [
         console.log(errors)
 
         const user = new User({
-            firstName: req.body.fname,
-            lastName: req.body.lname,
+            fullname: req.body.name,
             username: req.body.uname,
             salt: saltHash.salt,
             hash: saltHash.hash
@@ -34,8 +32,7 @@ module.exports.register_post = [
         if (!errors.isEmpty()){
             
             res.render('signup', {
-                fname: user.firstName,
-                lname: user.lastName,
+                name: user.name,
                 uname: user.username,
                 pass: req.body.pass,
                 cpass: req.body.cpass,

@@ -30,8 +30,12 @@ label{
     margin-bottom: 20px;
 }
 
+#signup-form{
+    margin-top: 5vh;
+}
+
 #login-form{
-    margin-top: 20vh;
+    margin-top: 15vh;
 }
 
 #submit{
