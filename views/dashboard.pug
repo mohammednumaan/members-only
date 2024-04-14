@@ -2,10 +2,16 @@ extends layout
 
 block content 
 
-   div.user-info 
-        h1 Welcome #{user.username}!
-        p Membership Satus : #{user.status}
-        a(href="/logout" role='button') Logout 
+   div.dashboard-top 
+
+     div.user-info
+          p Username: #{user.username}
+          a(href="/logout" id="logout") Logout 
+
+     div.membership-info 
+          p Membership Satus : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+          a(href="/member" id="member") Become a Member?
+        
 
    div.messages
     p Hello 

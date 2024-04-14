@@ -5,7 +5,9 @@ const { dashboard_get } = require('../controllers/dashboardController');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) => res.redirect('/register'));
+router.get('/', (req, res, next) => {
+  (req.isAuthenticated()) ? res.redirect('/dashboard') : res.redirect('/login')
+});
 
 router.get('/register', register_get);
 router.post('/register', register_post);
