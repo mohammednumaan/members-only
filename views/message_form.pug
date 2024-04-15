@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+
+    div.form#message-form 
+        form(method="POST" action="/message")
+
+            .form-group
+                label(for="title") Title Of Your Message  
+                input(name="title" id="title" type="text" value=undefined === title ? '' : title)
+
+            .form-group            
+                label(for="msg") Your Message Content  
+                input(name="msg" id="msg" type="text" value=undefined === msg ? '' : msg)
+
+            
+            button#submit(type="submit") Post Messsage
+            

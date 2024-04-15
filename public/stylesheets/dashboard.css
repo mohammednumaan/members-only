@@ -19,3 +19,36 @@
 #member{
     margin-top: 16px;
 }
+
+.user-greeting{
+  text-align: center;
+  opacity: 0.7;
+}
+
+.message-list{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.message-list > li{
+  width: 80vh;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.msg-info{
+  display: flex;
+  gap: 10px;
+  margin-top: -30px;
+  opacity: 0.7;
+}
+
+.message{
+  margin-top: -10px;
+}

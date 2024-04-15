@@ -2,18 +2,26 @@ extends layout
 
 block content 
 
+   h1(class='user-greeting') Welcome #{user.username}! 
    div.dashboard-top 
 
-     div.user-info
-          p Username: #{user.username}
-          a(href="/logout" id="logout") Logout 
 
-     div.membership-info 
-          p Membership Satus : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-          a(href="/member" id="member") Become a Member?
+    div.user-info
+        a(href="/logout" id="logout") Logout 
+        a(href="/message") Create a New Message 
+
+    div.membership-info 
+        p Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+        a(href="/member" id="member") (Become a Member?)
         
 
    div.messages
-    p Hello 
-        
-         
+    ul.message-list 
+     each msg in messages 
+          li 
+            h2= msg.title        
+            div.msg-info
+              p= (status !== 'Member') ? 'Author: Anonynous' : `Author: ${msg.user.username}` 
+              p= (status !== 'Member') ? 'Posted On: Hidden Date' : '(Posted On: ' +  msg.timeStamp.getDate() + '/' + msg.timeStamp.getMonth() + '/' + msg.timeStamp.getFullYear() + ')'
+
+            h3(class='message')= msg.text

@@ -1,7 +1,6 @@
 const {body, validationResult} = require('express-validator');
 const asyncHandler = require('express-async-handler')
 const User = require('../models/users')
-const bcrypt = require('bcryptjs');
 const { genPassword } = require('../passport/passwordUtils');
 
 module.exports.register_get = (req, res, next) => res.render('signup');
@@ -41,7 +40,6 @@ module.exports.register_post = [
         }
 
         else{
-            console.log(user)
             try{
                 await user.save();
                 res.redirect('/login')
