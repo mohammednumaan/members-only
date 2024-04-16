@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  div.form#status-form
+    form(method="POST" action=`/status/${role}`)
+      .form-group
+        label(for="status") Enter The Secret Code  
+        input(name="status" id="status" type="text" value=undefined === secretCode ? '' : secretCode)
+      
+      button#submit(type="submit") Become a #{role.charAt(0).toUpperCase() + role.slice(1)}
+
+  if errors
+    ul
+      each err in errors
+        li #{err.msg}

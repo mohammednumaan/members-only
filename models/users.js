@@ -4,7 +4,7 @@ const Scheme = mongoose.Schema;
 const UserSchema = new Scheme({
     fullname: {type: String, required: true},
     username: {type: String, required: true},
-    status: {type: String, required: true, default: 'User' },
+    status: {type: String, required: true, default: 'user' },
     salt: {type: String},
     hash: {type: String}
     

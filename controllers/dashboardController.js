@@ -9,7 +9,7 @@ module.exports.dashboard_get = asyncHandler(async (req, res, next)  => {
     const allMessages = await Message.find().populate('user');
     if (req.isAuthenticated()) {
         const user = req.user
-        res.render('dashboard', {user: user, messages: allMessages, status: req.user.status})
+      res.render('dashboard', {user: user, messages: allMessages})
     }
 
     else res.render('login')

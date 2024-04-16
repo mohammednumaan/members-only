@@ -3,6 +3,7 @@ const { register_get, register_post } = require('../controllers/signupController
 const passport = require('passport');
 const { dashboard_get } = require('../controllers/dashboardController');
 const { message_get, message_post } = require('../controllers/messageController');
+const { status_get, status_post } = require('../controllers/statusController.js');
 const router = express.Router();
 
 /* GET home page. */
@@ -27,6 +28,8 @@ router.get('/dashboard', dashboard_get);
 router.get('/message', message_get), 
 router.post('/message', message_post), 
 
+router.get('/status/:role', status_get)
+router.post('/status/:role', status_post), 
 
 
 module.exports = router;

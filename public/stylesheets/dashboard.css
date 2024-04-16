@@ -1,28 +1,46 @@
-.dashboard-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-info,
-.membership-info{
-    display: flex;
-    gap: 10px;
-}
-
-#logout{
-    margin-top:38px
-}
-
-#logout,
-#member{
-    margin-top: 16px;
+.user-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .user-greeting{
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.9;
+}
+
+.user-status{
+  margin-top: -20px;
+  opacity: 0.6;
+}
+
+.user-links{
+  display: flex;
+  gap: 20px;
+}
+
+#member{
+  margin-top: -20px;
+}
+
+#post-message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#post-message > button{
+  width: 300px;
+  height: 60px;
+  background-color: #FAF0E6;
+  border-radius: 14px;
+  font-size: 20px;
+}
+
+#post-message > button:hover{
+  cursor: pointer;
+
 }
 
 .message-list{
@@ -30,7 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
 
 }

@@ -1,27 +1,31 @@
 extends layout 
 
 block content 
+  
+  div.user-info
+    h1(class='user-greeting') Welcome #{user.username}! 
 
-   h1(class='user-greeting') Welcome #{user.username}! 
-   div.dashboard-top 
+    div.user-links
+      p(class="user-status") Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+      a(href="/logout") Logout
+
+      if user.status === 'user' 
+        a(href="/status/member" id="member") (Become a Member?)   
+      else if user.status === 'member'
+        a(href="/status/admin" id="member") (Become an Admin?)   
 
 
-    div.user-info
-        a(href="/logout" id="logout") Logout 
-        a(href="/message") Create a New Message 
+  a(href="/message" id="post-message")
+    button Post a Message
 
-    div.membership-info 
-        p Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-        a(href="/member" id="member") (Become a Member?)
-        
+  div.messages
+   ul.message-list 
+    each msg in messages 
+        li 
+          h2= msg.title        
+          div.msg-info
+            p= (user.status === 'member' || user.status === 'admin') ? `Author: ${msg.user.username}` : 'Author: Anonymous' 
+            p= (user.status === 'member' || user.status === 'admin') ? '(Posted On: ' +  msg.timeStamp.getDate() + '/' + msg.timeStamp.getMonth() + '/' + msg.timeStamp.getFullYear() + ')' : 'Posted On: Hidden Date'
 
-   div.messages
-    ul.message-list 
-     each msg in messages 
-          li 
-            h2= msg.title        
-            div.msg-info
-              p= (status !== 'Member') ? 'Author: Anonynous' : `Author: ${msg.user.username}` 
-              p= (status !== 'Member') ? 'Posted On: Hidden Date' : '(Posted On: ' +  msg.timeStamp.getDate() + '/' + msg.timeStamp.getMonth() + '/' + msg.timeStamp.getFullYear() + ')'
+          h3(class='message')= msg.text
 
-            h3(class='message')= msg.text
