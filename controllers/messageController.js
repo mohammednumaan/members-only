@@ -40,3 +40,19 @@ module.exports.message_post = [
     })
 
 ]
+
+module.exports.delete_get = asyncHandler(async(req, res, next) => {
+  const message = await Message.findById(req.params.id).exec();
+  if (!message) res.redirect('/');
+
+  res.render('message_delete_form',{
+    message: message
+  })
+})
+
+module.exports.delete_post = asyncHandler(async (req, res, next) => {
+
+  const message = await Message.findById(req.body.messageid).exec();
+  await Message.findByIdAndDelete(message._id);
+  res.redirect('/')
+})

@@ -36,7 +36,6 @@ module.exports.status_post = [
         hash: req.user.hash,
         _id: req.user._id
       });
-      console.log(updatedUser);
 
       if (user === null){
         const error = new Error('User Not Found!');

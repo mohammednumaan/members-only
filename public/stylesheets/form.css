@@ -37,9 +37,13 @@ label{
 #login-form{
     margin-top: 15vh;
 }
+#message-delete-form{
+  text-align: center;
+}
 
 #message-form,
-#status-form{
+#status-form,
+#message-delete-form{
   margin-top: 24vh;
 }
 

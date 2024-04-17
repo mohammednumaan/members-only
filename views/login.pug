@@ -16,4 +16,10 @@ block content
                 a(href="/register") Create An Account? 
                 button#submit(type="submit") Login
 
-            
+    p= err
+ 
+    if errors
+      ul
+        each err in errors
+          li err.msg
+                

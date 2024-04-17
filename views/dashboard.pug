@@ -7,12 +7,13 @@ block content
 
     div.user-links
       p(class="user-status") Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-      a(href="/logout") Logout
 
       if user.status === 'user' 
         a(href="/status/member" id="member") (Become a Member?)   
       else if user.status === 'member'
         a(href="/status/admin" id="member") (Become an Admin?)   
+      
+      a(href="/logout" id="logout") (Logout)
 
 
   a(href="/message" id="post-message")
@@ -28,4 +29,6 @@ block content
             p= (user.status === 'member' || user.status === 'admin') ? '(Posted On: ' +  msg.timeStamp.getDate() + '/' + msg.timeStamp.getMonth() + '/' + msg.timeStamp.getFullYear() + ')' : 'Posted On: Hidden Date'
 
           h3(class='message')= msg.text
+          if user.status === 'admin'
+            a(href=msg.url + '/delete' class="message-delete-link") Delete Message
 
