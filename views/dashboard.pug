@@ -1,20 +1,22 @@
-extends layout 
+extends layout
+
+block nav
+  div.nav
+    a(href='/') Home
+
+    if user.status === 'user' 
+      a(href="/status/member" id="member") Become a Member  
+    else if user.status === 'member'
+      a(href="/status/admin" id="member") Become an Admin  
+
+    a(href="/logout" id="logout") Logout
+
 
 block content 
   
   div.user-info
     h1(class='user-greeting') Welcome #{user.username}! 
-
-    div.user-links
-      p(class="user-status") Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-
-      if user.status === 'user' 
-        a(href="/status/member" id="member") (Become a Member?)   
-      else if user.status === 'member'
-        a(href="/status/admin" id="member") (Become an Admin?)   
-      
-      a(href="/logout" id="logout") (Logout)
-
+    p(class="user-status") Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
 
   a(href="/message" id="post-message")
     button Post a Message

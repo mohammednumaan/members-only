@@ -3,7 +3,7 @@ extends layout
 block content 
 
     div.form#signup-form
-        form(method='POST' action='/register')
+        form(method='POST' action='/signup')
 
             .form-group
                 label(for="name") Full Name  
@@ -22,10 +22,13 @@ block content
                 input(name="cpass" id="cpass" type="password" value=undefined === cpass ? '' : cpass)
             
             .form-group
+                if errors
+                  ul(class="errors")
+                    each err in errors
+                      li= err.msg
+            
+            .form-group
                 a(href="/login") Already Have An Account? 
                 button#submit(type="submit") Signup
 
-    if errors
-        ul
-        each err in errors 
-                li= err.msg
+

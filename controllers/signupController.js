@@ -3,9 +3,9 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/users')
 const { genPassword } = require('../passport/passwordUtils');
 
-module.exports.register_get = (req, res, next) => res.render('signup');
+module.exports.signup_get = (req, res, next) => res.render('signup');
 
-module.exports.register_post = [
+module.exports.signup_post = [
 
     body('name').trim().isLength({min: 3}).withMessage('Last Name Must Be Atleast 3 Characters!').escape(),
     body('uname').trim().isLength({min: 3}).withMessage('Username Must Be Atleast 3 Characters!').escape(),
@@ -18,7 +18,6 @@ module.exports.register_post = [
     asyncHandler(async(req, res, next) => {
         const errors = validationResult(req);
         const saltHash = genPassword(req.body.pass);
-        console.log(errors)
 
         const user = new User({
             fullname: req.body.name,

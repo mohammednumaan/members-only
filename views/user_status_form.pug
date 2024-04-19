@@ -1,5 +1,16 @@
 extends layout
 
+block nav
+  div.nav
+    a(href='/') Home
+
+    if user.status === 'user' 
+      a(href="/status/member" id="member") Become a Member  
+    else if user.status === 'member'
+      a(href="/status/admin" id="member") Become an Admin  
+
+    a(href="/logout" id="logout") Logout
+    
 block content
 
   div.form#status-form
@@ -7,10 +18,11 @@ block content
       .form-group
         label(for="status") Enter The Secret Code  
         input(name="status" id="status" type="text" value=undefined === secretCode ? '' : secretCode)
-      
-      button#submit(type="submit") Become a #{role.charAt(0).toUpperCase() + role.slice(1)}
 
-  if errors
-    ul
-      each err in errors
-        li #{err.msg}
+      .form-group
+          if errors
+            ul(class="errors")
+              each err in errors
+                li= err.msg
+      .form-group           
+        button#submit(type="submit") Post Messsage

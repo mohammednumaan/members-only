@@ -12,15 +12,14 @@ const verifyCallback = async (username, password, done) => {
 
     try{
         const user = await Users.findOne({username: username});
-        if (!user) return done(null, false);
+        if (!user) return done(null, false, {message: 'Invalid Username Or Password.'});
     
         const isValidPassword = verifyPassword(password, user.hash, user.salt);
-        return (isValidPassword) ? done(null, user) : done(null, false);
+        return (isValidPassword) ? done(null, user) : done(null, false, {message: 'Invalid Username Or Password.'});
 
     } catch(err){
         done(err);
     }
-
 }
 
 const strategy  = new LocalStrategy(customFields, verifyCallback);

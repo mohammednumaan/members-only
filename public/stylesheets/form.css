@@ -50,5 +50,12 @@ label{
 #submit{
     width: 315px;
     height: 30px;
-    font-size: 20px; 
+    font-size: 20px;
+}
+
+.errors{
+
+  list-style: none;
+  color: red;
+  margin-left: -30px;
 }

@@ -1,5 +1,16 @@
 extends layout
 
+block nav
+  div.nav
+    a(href='/') Home
+
+    if user.status === 'user' 
+      a(href="/status/member" id="member") Become a Member  
+    else if user.status === 'member'
+      a(href="/status/admin" id="member") Become an Admin  
+
+    a(href="/logout" id="logout") Logout
+
 block content
     div.form#message-delete-form
       h1(style="color: red") Do You Want To Really Delete This Message?

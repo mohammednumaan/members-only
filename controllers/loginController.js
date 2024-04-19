@@ -7,20 +7,16 @@ module.exports.login_post = [
   body('uname').trim().escape(),
   body('pass').trim().escape(),
 
-  asyncHandler(async(req, res, next) => {
-    const errors = validationResult(req);
+  (req, res, next) => {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { 
+          res.render('login', {error: info.message});
+        }
+        
+        req.login(user, next);
+    })(req, res, next);
 
-    if (!errors.isEmpty()){
-        res.render('login', {
-            uname: req.body.uname,
-            pass: req.body.pass,
-            errors: errors.array()
-        })
-    }
-
-    else{
-      passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/dashboard'})
-    }
-
-  })
+  },
+  (req, res, next) => res.redirect('/dashboard')
 ]

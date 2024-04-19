@@ -4,6 +4,7 @@ const User = require('../models/users')
 
 module.exports.status_get = asyncHandler(async (req, res,next) => {
   res.render('user_status_form', {
+    user: req.user,
     role: req.params.role
   })
 })
@@ -20,6 +21,7 @@ module.exports.status_post = [
 
     if (!errors.isEmpty()){
       res.render('user_status_form', {
+        user: req.user,
         role: req.params.role,
         secretCode: req.body.secretCode,
         errors: errors.array()

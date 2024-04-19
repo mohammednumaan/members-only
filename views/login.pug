@@ -3,7 +3,6 @@ extends layout
 block content 
     div.form#login-form
         form(method='POST' action='/login')
-            
             .form-group
                 label(for="uname") User Name  
                 input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
@@ -13,13 +12,8 @@ block content
                 input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
 
             .form-group
-                a(href="/register") Create An Account? 
+              if error
+                p(style="color:red; text-align: center;")= error
+            .form-group
+                a(href="/signup") Create An Account? 
                 button#submit(type="submit") Login
-
-    p= err
- 
-    if errors
-      ul
-        each err in errors
-          li err.msg
-                

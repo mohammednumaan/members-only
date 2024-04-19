@@ -5,7 +5,7 @@ const Message = require('../models/messages')
 
 
 
-module.exports.message_get = asyncHandler(async (req, res, next) => res.render('message_form'));
+module.exports.message_get = asyncHandler(async (req, res, next) => res.render('message_form', {user: req.user}));
 
 module.exports.message_post = [
 
@@ -25,6 +25,7 @@ module.exports.message_post = [
         
         if(!errors.isEmpty()){
             res.render('message_form', {
+                user: req.user,
                 title: message.title,
                 msg: message.msg,
                 errors: errors.array()
@@ -46,6 +47,7 @@ module.exports.delete_get = asyncHandler(async(req, res, next) => {
   if (!message) res.redirect('/');
 
   res.render('message_delete_form',{
+    user: req.user,
     message: message
   })
 })
