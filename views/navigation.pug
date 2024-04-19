@@ -1,13 +1,10 @@
-extends layout
-
 block nav
-  div.nav
-    a(href='/') Home
+  .nav
+    a(href="/") Home
 
-    if user.status === 'user' 
-      a(href="/status/member" id="member") Become a Member  
+    if user.status === 'user'
+      a#member(href="/status/member") Become a Member
     else if user.status === 'member'
-      a(href="/status/admin" id="member") Become an Admin  
+      a#member(href="/status/admin") Become an Admin
 
-    a(href="/logout" id="logout") Logout
-  
+    a#logout(href="/logout") Logout

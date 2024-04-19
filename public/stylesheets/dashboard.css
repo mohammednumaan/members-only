@@ -16,10 +16,6 @@
   opacity: 0.6;
 }
 
-.user-links{
-  display: flex;
-  gap: 10px;
-}
 
 #post-message{
   display: flex;

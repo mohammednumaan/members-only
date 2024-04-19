@@ -1,36 +1,27 @@
 extends layout
 
-block nav
-  div.nav
-    a(href='/') Home
+include ./navigation.pug
 
-    if user.status === 'user' 
-      a(href="/status/member" id="member") Become a Member  
-    else if user.status === 'member'
-      a(href="/status/admin" id="member") Become an Admin  
+block content
+  .user-info
+    h1.user-greeting Welcome #{ user.username }! 
+    p.user-status Membership Status : #{ user.status.charAt(0).toUpperCase() + user.status.slice(1) }
 
-    a(href="/logout" id="logout") Logout
-
-
-block content 
-  
-  div.user-info
-    h1(class='user-greeting') Welcome #{user.username}! 
-    p(class="user-status") Membership Status : #{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-
-  a(href="/message" id="post-message")
+  a#post-message(href="/message")
     button Post a Message
 
-  div.messages
-   ul.message-list 
-    each msg in messages 
-        li 
-          h2= msg.title        
-          div.msg-info
-            p= (user.status === 'member' || user.status === 'admin') ? `Author: ${msg.user.username}` : 'Author: Anonymous' 
-            p= (user.status === 'member' || user.status === 'admin') ? '(Posted On: ' +  msg.timeStamp.getDate() + '/' + msg.timeStamp.getMonth() + '/' + msg.timeStamp.getFullYear() + ')' : 'Posted On: Hidden Date'
+  .messages
+    ul.message-list
+      if messages.length
+        each msg in messages 
+          li
+            h2= msg.title
+            .msg-info
+              p= user.status === "member" || user.status === "admin" ? `Author: ${msg.user.username}` : "Author: Anonymous"
+              p= user.status === "member" || user.status === "admin" ? "(Posted On: " + msg.timeStamp.getDate() + "/" + msg.timeStamp.getMonth() + "/" + msg.timeStamp.getFullYear() + ")" : "Posted On: Hidden Date"
 
-          h3(class='message')= msg.text
-          if user.status === 'admin'
-            a(href=msg.url + '/delete' class="message-delete-link") Delete Message
-
+            h3.message= msg.text
+            if user.status === 'admin'
+              a.message-delete-link(href=msg.url + "/delete") Delete Message
+      else
+        h1(style="margin-top: 15vh")= "There are no messages! Be the first to post a message!"

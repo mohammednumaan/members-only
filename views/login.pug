@@ -1,19 +1,27 @@
-extends layout 
+extends layout
 
-block content 
-    div.form#login-form
-        form(method='POST' action='/login')
-            .form-group
-                label(for="uname") User Name  
-                input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
-                
-            .form-group
-                label(for="pass") Password
-                input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
+block content
+  #login-form.form
+    form(method="POST", action="/login")
+      .form-group
+        label(for="uname") User Name
+        input#uname(
+          name="uname",
+          type="text",
+          value=undefined === uname ? "" : uname
+        )
 
-            .form-group
-              if error
-                p(style="color:red; text-align: center;")= error
-            .form-group
-                a(href="/signup") Create An Account? 
-                button#submit(type="submit") Login
+      .form-group
+        label(for="pass") Password
+        input#pass(
+          name="pass",
+          type="password",
+          value=undefined === pass ? "" : pass
+        )
+
+      .form-group
+        if error
+          p(style="color: red; text-align: center")= error
+      .form-group
+        a(href="/signup") Create An Account?
+        button#submit(type="submit") Login

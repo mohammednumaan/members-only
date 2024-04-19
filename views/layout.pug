@@ -2,20 +2,18 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/form.css')
-    link(rel='stylesheet', href='/stylesheets/dashboard.css')
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/form.css")
+    link(rel="stylesheet", href="/stylesheets/dashboard.css")
 
   body
-
-    div.header
+    .header
       h1 Members Only
-      
+
       block nav
-        div.nav
+        .nav
           a(href="/") Home
           a(href="/signup") Signup
           a(href="/login") Login
-          
-      
+
     block content

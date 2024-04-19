@@ -1,34 +1,26 @@
-extends layout 
+extends layout
 
-block nav
-  div.nav
-    a(href='/') Home
+include ./navigation.pug
 
-    if user.status === 'user' 
-      a(href="/status/member" id="member") Become a Member  
-    else if user.status === 'member'
-      a(href="/status/admin" id="member") Become an Admin  
+block content
+  #message-form.form
+    form(method="POST", action="/message")
+      .form-group
+        label(for="title") Title Of Your Message
+        input#title(
+          name="title",
+          type="text",
+          value=undefined === title ? "" : title
+        )
 
-    a(href="/logout" id="logout") Logout
+      .form-group
+        label(for="msg") Your Message Content
+        input#msg(name="msg", type="text", value=undefined === msg ? "" : msg)
 
-block content 
-
-    div.form#message-form 
-        form(method="POST" action="/message")
-
-            .form-group
-                label(for="title") Title Of Your Message  
-                input(name="title" id="title" type="text" value=undefined === title ? '' : title)
-
-            .form-group            
-                label(for="msg") Your Message Content  
-                input(name="msg" id="msg" type="text" value=undefined === msg ? '' : msg)
-            
-            .form-group
-                if errors
-                  ul(class="errors")
-                    each err in errors
-                      li= err.msg
-            .form-group           
-              button#submit(type="submit") Post Messsage
-    
+      .form-group
+        if errors
+          ul.errors
+            each err in errors
+              li= err.msg
+      .form-group
+        button#submit(type="submit") Post Messsage

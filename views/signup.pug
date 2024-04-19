@@ -1,34 +1,46 @@
-extends layout 
+extends layout
 
-block content 
+block content
+  #signup-form.form
+    form(method="POST", action="/signup")
+      .form-group
+        label(for="name") Full Name
+        input#name(
+          name="name",
+          type="text",
+          value=undefined === name ? "" : name
+        )
 
-    div.form#signup-form
-        form(method='POST' action='/signup')
+      .form-group
+        label(for="uname") User Name
+        input#uname(
+          name="uname",
+          type="text",
+          value=undefined === uname ? "" : uname
+        )
 
-            .form-group
-                label(for="name") Full Name  
-                input(name="name" id="name" type="text" value=undefined === name ? '' : name)
+      .form-group
+        label(for="pass") Password
+        input#pass(
+          name="pass",
+          type="password",
+          value=undefined === pass ? "" : pass
+        )
 
-            .form-group            
-                label(for="uname") User Name  
-                input(name="uname" id="uname" type="text" value=undefined === uname ? '' : uname)
-            
-            .form-group
-                label(for="pass") Password
-                input(name="pass" id="pass" type="password" value=undefined === pass ? '' : pass)
+      .form-group
+        label(for="cpass") Confirm Password
+        input#cpass(
+          name="cpass",
+          type="password",
+          value=undefined === cpass ? "" : cpass
+        )
 
-            .form-group 
-                label(for="cpass") Confirm Password 
-                input(name="cpass" id="cpass" type="password" value=undefined === cpass ? '' : cpass)
-            
-            .form-group
-                if errors
-                  ul(class="errors")
-                    each err in errors
-                      li= err.msg
-            
-            .form-group
-                a(href="/login") Already Have An Account? 
-                button#submit(type="submit") Signup
+      .form-group
+        if errors
+          ul.errors
+            each err in errors
+              li= err.msg
 
-
+      .form-group
+        a(href="/login") Already Have An Account?
+        button#submit(type="submit") Signup

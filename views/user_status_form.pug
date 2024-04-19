@@ -1,28 +1,31 @@
 extends layout
 
 block nav
-  div.nav
-    a(href='/') Home
+  .nav
+    a(href="/") Home
 
-    if user.status === 'user' 
-      a(href="/status/member" id="member") Become a Member  
+    if user.status === 'user'
+      a#member(href="/status/member") Become a Member
     else if user.status === 'member'
-      a(href="/status/admin" id="member") Become an Admin  
+      a#member(href="/status/admin") Become an Admin
 
-    a(href="/logout" id="logout") Logout
-    
+    a#logout(href="/logout") Logout
+
 block content
-
-  div.form#status-form
-    form(method="POST" action=`/status/${role}`)
+  #status-form.form
+    form(method="POST", action=`/status/${role}`)
       .form-group
-        label(for="status") Enter The Secret Code  
-        input(name="status" id="status" type="text" value=undefined === secretCode ? '' : secretCode)
+        label(for="status") Enter The Secret Code
+        input#status(
+          name="status",
+          type="text",
+          value=undefined === secretCode ? "" : secretCode
+        )
 
       .form-group
-          if errors
-            ul(class="errors")
-              each err in errors
-                li= err.msg
-      .form-group           
-        button#submit(type="submit") Post Messsage
+        if errors
+          ul.errors
+            each err in errors
+              li= err.msg
+      .form-group
+        button#submit(type="submit") Change Membership Status
